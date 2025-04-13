@@ -30,6 +30,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+// app.MapGet("/", () => "Hello World!");
 
 // // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
@@ -45,3 +46,5 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowOrigin");
 app.MapControllers();
 app.UseHttpsRedirection();
+
+app.Run();

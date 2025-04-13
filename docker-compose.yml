@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  dotnet-api:
+    build:
+      context: ./dotnet-api
+    ports:
+      - "5001:80"  # Host:Container
+    depends_on:
+      - python-api
+    environment:
+      - PYTHON_API_URL=http://python-api:8000
+    networks:
+      - backend
+
+  python-api:
+    build:
+      context: ./python-api
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
